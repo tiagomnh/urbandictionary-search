@@ -1,6 +1,6 @@
 {
    "name":"Urban Dictionary Search",
-   "version":"0.3",
+   "version":"0.4",
    "description":"Searches expressions on UrbanDictionary.com.",
    "icons":{
       "16":"images/icon.png",
