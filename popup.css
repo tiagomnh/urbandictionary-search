@@ -1,0 +1,93 @@
+body {
+	min-width: 400px;
+	min-height: 100px;
+	background-color: #59829C;
+}
+
+a {
+	text-decoration: none;
+	text-decoration: underline;
+	color: #000;
+}
+
+#search {
+	margin-bottom: 15px;
+}
+
+#results {
+	background-color: #F8F8F8;
+	padding-top: 10px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	text-align: left;
+}
+
+.word {
+	font-family: Helvetica, sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.definition {
+	padding-top: 5px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	line-height: 1.8;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.example {
+	margin-top: 5px;
+	background-color: #E0E0E0;
+	font-style: italic;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.tags {
+	margin-top: 5px;
+	margin-bottom: 5px;	
+}
+
+.tag {
+	margin-right: 2px;
+	padding-top: 2px;
+	padding-right: 3px;
+	padding-bottom: 2px;
+	padding-left: 3px;
+	background-color: #6698CB;
+	color: #FBFFEA;
+	text-decoration: none;
+	font-weight: normal;
+}
+
+.tag:hover {
+	background-color: #476a90;
+}
+
+#footer { 
+	width: 100%;
+	line-height: 28px;
+	background-color: #FFC652;
+}
+
+#footer_text {
+	align: center;
+	color: #BC4109;
+	line-height: 28px;
+	text-align: center;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	text-decoration: none;
+	padding-bottom: 3px;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 3px;
+}
+
+#footer_text:hover {
+	background-color: #ED6523;
+	color: white;
+}

@@ -1,0 +1,19 @@
+{
+   "name":"Urban Dictionary Search",
+   "version":"0.3",
+   "description":"Searches expressions on UrbanDictionary.com.",
+   "icons":{
+      "16":"images/icon.png",
+      "48":"images/icon.png",
+      "128":"images/icon.png"
+   },
+   "browser_action":{
+      "default_icon":"images/icon.png",
+      "popup":"popup.html"
+   },
+   "permissions":[
+      "tabs",
+      "http://*/*",
+      "https://*/*"
+   ]
+}

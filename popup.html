@@ -1,0 +1,44 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<link rel="stylesheet" href="popup.css" type="text/css">
+</head>
+<body>
+	<div id="search">
+		<center>
+			<div>
+				<a target="_blank" href="http://www.urbandictionary.com/">
+					<img id="logo" src="images/urban_logo.png" alt="Urban Dictionary"/>	
+				</a>
+			</div>
+			<div>
+				<form name="search_form" action="javascript:onSelection();">
+					<input id="query_field" value="" size="36" maxlength="36">
+					<input id="button" value="Search" type="submit">
+				</form>
+			</div>
+		</center>
+	</div>
+	<div id="list">
+	</div>
+</body>
+<div id="footer">
+	<center>
+		<img id="searching_gif" src="images/loading.gif" style="vertical-align: middle;" display="none"/>
+		<a id="footer_text" target="_blank"></a>
+	</center>
+</div>
+<script id="popup-js" src="popup.js"></script>
+<script type="text/javascript">
+	document.search_form.query_field.focus();
+	
+	setFooter({
+        message: "search an expression",
+        href: null,
+        search_animation: false
+    });
+	
+	chrome.extension.onRequest.addListener(onSelection);
+	chrome.tabs.executeScript(null, { file: "request.js" });
+</script>
+</html>
