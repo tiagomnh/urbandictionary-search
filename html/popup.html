@@ -1,44 +1,32 @@
 <!DOCTYPE html> 
 <html>
+<link type="text/css" href="/css/smoothness/jquery-ui-1.8.16.custom.css" rel="stylesheet" />	
+<link type="text/css" href="/css/popup.css" rel="stylesheet" />	
+<script type="text/javascript" src="/js/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="/js/jquery-ui-1.8.16.custom.min.js"></script>
 <head>
-<link rel="stylesheet" href="/css/popup.css" type="text/css">
+	<div id="header"> 
+	<center>
+		<form id="search_form">
+	    	<table>
+				<tr>
+	      			<td><input id="search_input" type="text"/></td>
+	      			<td><input id="search_button" type="submit" value="Search"/></td>
+				</tr>
+	    	</table>
+		</form>	
+	</center>
+	</div>
 </head>
 <body>
-	<div id="search">
-		<center>
-			<div>
-				<a target="_blank" href="http://www.urbandictionary.com/">
-					<img id="logo" src="/images/urban_logo.png" alt="Urban Dictionary"/>	
-				</a>
-			</div>
-			<div>
-				<form name="search_form" action="javascript:onSelection();">
-					<input id="query_field" value="" size="36" maxlength="36">
-					<input id="button" value="Search" type="submit">
-				</form>
-			</div>
-		</center>
-	</div>
-	<div id="list">
-	</div>
 </body>
-<div id="footer">
-	<center>
-		<img id="searching_gif" src="/images/loading.gif" style="vertical-align: middle;" display="none"/>
-		<a id="footer_text" target="_blank"></a>
-	</center>
-</div>
-<script id="popup-js" src="/js/popup.js"></script>
 <script type="text/javascript">
-	document.search_form.query_field.focus();
+	$("#search_button").button();		
+	$("#search_input").focus();
 	
-	setFooter({
-        message: "search an expression",
-        href: null,
-        search_animation: false
-    });
-	
-	chrome.extension.onRequest.addListener(onSelection);
-	chrome.tabs.executeScript(null, { file: "/js/request.js" });
+	$('#search_form').submit(function() {
+		chrome.extension.onRequest.addListener(onSelection);
+		chrome.tabs.executeScript(null, { file: "/js/request.js" });
+	});
 </script>
 </html>
