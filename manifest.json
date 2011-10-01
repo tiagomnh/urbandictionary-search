@@ -1,19 +1,19 @@
 {
-   "name":"Urban Dictionary Search",
-   "version":"0.4",
-   "description":"Searches expressions on UrbanDictionary.com.",
-   "icons":{
-      "16":"images/icon.png",
-      "48":"images/icon.png",
-      "128":"images/icon.png"
-   },
-   "browser_action":{
-      "default_icon":"images/icon.png",
-      "popup":"html/popup.html"
-   },
-   "permissions":[
-      "tabs",
-      "http://*/*",
-      "https://*/*"
-   ]
+    "name": "Urban Dictionary Search",
+    "version": "0.4",
+    "description": "Searches expressions on UrbanDictionary.com.",
+    "icons": {
+        "16": "images/icons/icon.png",
+        "48": "images/icons/icon.png",
+        "128": "images/icons/icon.png"
+    },
+    "browser_action": {
+        "default_icon": "images/icons/icon.png",
+        "popup": "html/popup.html"
+    },
+    "permissions": [
+    "tabs",
+    "http://*/*",
+    "https://*/*"
+    ]
 }
