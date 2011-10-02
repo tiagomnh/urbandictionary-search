@@ -1,32 +1,71 @@
 <!DOCTYPE html> 
 <html>
-<link type="text/css" href="/css/smoothness/jquery-ui-1.8.16.custom.css" rel="stylesheet" />	
-<link type="text/css" href="/css/popup.css" rel="stylesheet" />	
-<script type="text/javascript" src="/js/jquery-1.6.2.min.js"></script>
-<script type="text/javascript" src="/js/jquery-ui-1.8.16.custom.min.js"></script>
 <head>
-	<div id="header"> 
-	<center>
-		<form id="search_form">
-	    	<table>
-				<tr>
-	      			<td><input id="search_input" type="text"/></td>
-	      			<td><input id="search_button" type="submit" value="Search"/></td>
-				</tr>
-	    	</table>
-		</form>	
-	</center>
-	</div>
+	<link type="text/css" href="/css/smoothness/jquery-ui-1.8.16.custom.css" rel="stylesheet" />	
+	<link type="text/css" href="/css/popup.css" rel="stylesheet" />
+	<script type="text/javascript" src="/js/jquery/jquery-1.6.2.min.js"></script>
+	<script type="text/javascript" src="/js/jquery/jquery-ui-1.8.16.custom.min.js"></script>
+	<script type="text/javascript" src="/js/popup.js"></script>
 </head>
 <body>
+	<div id="top_bar">
+		<table>
+			<tr>
+				<td style="width:100%"/>
+				<td>
+					<img id="loading_animation" src="/images/loading.gif"/>
+				</td>
+				<td>
+					<form id="search_form" action="">
+						<input id="search_input" type="text" size="25" maxlength="25"/>
+					</form>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+	<div id="outer_body">
+		<div id="inner_body">
+			<a id="expression">Mind over matter</a>
+			<div id="definition">
+				1. Method of expressing feelings or opinions through physical means 
+				<br><br>
+				2. The act of bitching and whining and calling it self expression
+			</div>
+			<div id="example">
+				1a. The artist showed self expression about his piece about wartime Iraq 
+				<br><br>
+				2a. That emo kid's self expression makes me want to kick him in the nads
+			</div>
+			<div id="tags">
+				<a class="tag">expression</a>
+				<a class="tag">gogoe</a>
+				<a class="tag">coisas</a>
+			</div>	
+		</div>
+	</div>
+			
+	<div id="footer">
+	</div>
 </body>
 <script type="text/javascript">
-	$("#search_button").button();		
 	$("#search_input").focus();
+	//$( "#tabs" ).tabs();
+	//$("#loading_animation").hide();
+	//$("#definitions_area").hide();
+
+	$("#search_form").submit(function() {
+		$("#loading_animation").show("scale");
+		$("#definitions_area").show("blind");
+		
+		//chrome.extension.onRequest.addListener(onSelection);
+		// chrome.tabs.executeScript(null, { file: "/js/request.js" });
+		return false;
+	});	
 	
-	$('#search_form').submit(function() {
-		chrome.extension.onRequest.addListener(onSelection);
-		chrome.tabs.executeScript(null, { file: "/js/request.js" });
+	$(function() {
+		$( "#accordion" ).accordion();
 	});
+	
 </script>
 </html>

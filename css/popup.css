@@ -1,26 +1,102 @@
-body {
-	min-width: 400px;
-	text-decoration: none;
+html, body {
+	width: 400px;
+	height: auto;
+	border-width: 0px;
+	margin: 0px;
 	font-size: 12px;
-	font-family: Verdana,Arial,sans-serif;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	text-decoration: none;
+	background-color: #EEE;
 }
 
-#header {
-	background-color: #FFFFFF;
-	height: 25px;
-	padding-bottom: 5px;
+a {
+	text-decoration: none;
 }
 
-#title {
-	font-size: 18px;
-	vertical-align: middle;
+#top_bar {
+	height: 30px;
+	background: -webkit-gradient(linear,0% 0,0% 100%,from(#404040),to(#262626));
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #E9E9E9;
+	border-bottom-color: #E9E9E9;
+	border-right-color: #E9E9E9;
+	border-left-color: #E9E9E9;
 }
 
-#search_form {
-	
+#loading_animation {
+	margin-right:3px;
+	display: none;
+	vertical-align:middle;
 }
 
-#search_button {
-	padding-top: 1px;
-	padding-bottom: 1px;
+#search_input {
+	vertical-align:middle;  
+}
+
+#inner_body {
+	-webkit-border-bottom-right-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	background-color: whiteSmoke;
+	border-bottom: 1px solid #DDD;
+	border-right: 1px solid #DDD;
+	border-left: 1px solid #DDD;
+	padding-top:5px;
+}
+
+#expression {
+	font-size: 14px;
+	font-weight: bold;
+	padding:8px;
+}
+
+#definition {
+	padding:15px;
+}
+
+#example {
+	background-color:#FFFFFF;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	font-style:italic;
+	border: 1px solid #DDD;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	padding:5px;
+}
+
+#tags {
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-top: 1px solid #DDD;
+	margin-top: 5px;
+	padding: 10px;
+}
+
+.tag {
+	padding: 1px 3px 2px;
+	background-color: #BFBFBF;
+	color: white;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
 }
