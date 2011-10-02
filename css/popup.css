@@ -81,12 +81,6 @@ a {
 }
 
 #tags {
-	-webkit-border-top-left-radius: 5px;
-	-webkit-border-top-right-radius: 5px;
-	-moz-border-radius-topleft: 5px;
-	-moz-border-radius-topright: 5px;
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
 	border-top: 1px solid #DDD;
 	margin-top: 5px;
 	padding: 10px;
