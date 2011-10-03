@@ -1,6 +1,7 @@
 <!DOCTYPE html> 
 <html>
 <head>
+	<base target="_blank" />
 	<link type="text/css" href="/css/smoothness/jquery-ui-1.8.16.custom.css" rel="stylesheet" />	
 	<link type="text/css" href="/css/popup.css" rel="stylesheet" />
 	<script type="text/javascript" src="/js/jquery/jquery-1.6.2.min.js"></script>
@@ -16,9 +17,7 @@
 					<img id="loading_animation" src="/images/loading.gif"/>
 				</td>
 				<td>
-					<form id="search_form" action="">
-						<input id="search_input" type="text" size="25" maxlength="25"/>
-					</form>
+					<input id="search_input" type="text" size="25" maxlength="25"/>
 				</td>
 			</tr>
 		</table>
@@ -26,27 +25,13 @@
 	
 	<div id="outer_body">
 		<div id="inner_body">
-			<a id="expression">Mind over matter</a>
-			<div id="definition">
-				1. Method of expressing feelings or opinions through physical means 
-				<br><br>
-				2. The act of bitching and whining and calling it self expression
-			</div>
-			<div id="example">
-				1a. The artist showed self expression about his piece about wartime Iraq 
-				<br><br>
-				2a. That emo kid's self expression makes me want to kick him in the nads
-			</div>
-			<div id="tags">
-				<a class="tag">expression</a>
-				<a class="tag">gogoe</a>
-				<a class="tag">coisas</a>
-			</div>	
+			<a id="expression"></a>
+			<div id="definition"></div>
+			<div id="example"></div>
+			<div id="tags"></div>	
 		</div>
 		
-		<div id="message_box">
-			asdasdas
-		</div>
+		<div id="message_box"></div>
 	</div>
 </body>
 <script type="text/javascript">
@@ -56,9 +41,11 @@
 		chrome.extension.onRequest.addListener(search);	
 		chrome.tabs.executeScript(null, { file: "/js/request.js" });
 		
-		$("#search_form").submit(function() {
-			handleFormSubmit($("#search_input").val());
-		});		
+		$('#search_input').keypress(function(e) {
+	        if(e.which == 13) {
+				handleFormSubmit($("#search_input").val());
+	        }
+	    });
  	});
 </script>
 </html>
