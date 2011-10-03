@@ -104,6 +104,7 @@ a {
 }
 
 #message_box {
+	display:none;
 	margin:8px;
 	border:solid 1px;
 	padding:5px;
