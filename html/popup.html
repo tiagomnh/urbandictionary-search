@@ -50,14 +50,14 @@
 </body>
 <script type="text/javascript">
 	$("#search_input").focus();
-	$("#message_box").addClass("warning").text("bla bla bla");
 	
 	$("#search_form").submit(function() {
-		$("#loading_animation").show("scale");
-		$("#inner_body").show("blind");
+		//$("#loading_animation").show("scale");
+		//$("#inner_body").show("blind");
+		//$("#message_box").addClass("warning").text("bla bla bla").show("blind");
 		
-		//chrome.extension.onRequest.addListener(onSelection);
-		// chrome.tabs.executeScript(null, { file: "/js/request.js" });
+		chrome.extension.onRequest.addListener(onSelection);
+		chrome.tabs.executeScript(null, { file: "/js/request.js" });
 		return false;
 	});	
 </script>
