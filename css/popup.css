@@ -11,6 +11,7 @@ html, body {
 
 a {
 	text-decoration: none;
+	color: #000000;
 }
 
 #top_bar {
@@ -91,6 +92,8 @@ a {
 }
 
 .tag {
+	margin-left:1px;
+	margin-right:1px;
 	padding: 1px 3px 2px;
 	background-color: #BFBFBF;
 	color: white;
