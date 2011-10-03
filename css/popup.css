@@ -40,7 +40,11 @@ a {
 	vertical-align:middle;  
 }
 
+#outer_body {
+}
+
 #inner_body {
+	display: none;
 	-webkit-border-bottom-right-radius: 5px;
 	-webkit-border-bottom-left-radius: 5px;
 	-moz-border-radius-bottomright: 5px;
@@ -93,4 +97,34 @@ a {
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
+}
+
+.tag:hover {
+	background-color:#7E7E7E;
+}
+
+#message_box {
+	margin:8px;
+	border:solid 1px;
+	padding:5px;
+	text-align:center;
+	font-weight: bold;
+}
+
+.error {
+	color:#B40404;
+	border-color:#B40404;
+	background:#F5A9A9;
+}
+
+.warning {
+	color:#FBAF5C;
+	border-color:#FBAF5C;
+	background:#FFF79A;
+}
+
+.info {
+	color:#23819C;
+	border-color:#23819C;
+	background:#A1D5E5;
 }
