@@ -53,12 +53,12 @@
 	$(window).load(function() {
  		$("#search_input").focus();
 
-		chrome.extension.onRequest.addListener(handleMouseSelection);	
+		chrome.extension.onRequest.addListener(search);	
 		chrome.tabs.executeScript(null, { file: "/js/request.js" });
 		
 		$("#search_form").submit(function() {
 			handleFormSubmit($("#search_input").val());
-		}		
+		});		
  	});
 </script>
 </html>
