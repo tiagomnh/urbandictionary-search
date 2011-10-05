@@ -86,15 +86,19 @@ a {
 }
 
 #tags {
+	width: 90%;
 	border-top: 1px solid #DDD;
 	margin-top: 5px;
 	padding: 10px;
+	text-align:justify;
 }
 
 .tag {
-	margin-left:1px;
-	margin-right:1px;
-	padding: 1px 3px 2px;
+	margin-right: 2px;
+	padding-left: 3px;
+	padding-right: 3px;
+	padding-top:1px;
+	padding-bottom:1px;	
 	background-color: #BFBFBF;
 	color: white;
 	-webkit-border-radius: 3px;
