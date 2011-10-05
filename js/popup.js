@@ -7,11 +7,12 @@ function handleFormSubmit(query) {
 }
 
 function search(query) {
+	$("#search_input").val(query);
 	$("#loading_animation").show("scale");
-	query = replaceSpacesWithPlus(trim(query));
+	var url_query = replaceSpacesWithPlus(trim(query));
 	
 	var req = new XMLHttpRequest();
-    search_link = 'http://www.urbandictionary.com/define.php?term=' + query;
+    search_link = 'http://www.urbandictionary.com/define.php?term=' + url_query;
     req.open('GET', search_link, true);
 
     req.onreadystatechange = function(event) {
@@ -20,17 +21,29 @@ function search(query) {
                 parseResponse(req.responseText);
             }
             else {
-				$("#message_box")
-				.addClass("error")
-				.text("Apparently we're getting a " + req.status + ".")
-				.show("blind");
-	
-				// put error in message_box
+				// error
+				messageUser({
+					message:"Error. <a href=\"javascript:search('" + query + "');\">Try again.</a>",
+					type:"error",
+					hide:true,
+					hide_loading:true
+				});
             }
         } 
     };
 
-    req.send(null);
+	/*
+	var xmlHttpTimeout = setTimeout(ajaxTimeout, 5000);
+	function ajaxTimeout() {
+		messageUser({
+			message:"Error. <a href=\"javascript:search('" + query + "');\">Try again.</a>",
+			type:"error",
+			hide:true
+		});
+	}
+	*/
+
+	req.send(null);
 }
 
 function parseResponse(response) {	
@@ -38,48 +51,95 @@ function parseResponse(response) {
     tempDiv.innerHTML = removeScriptTags(response);
 
     var indexes = tempDiv.getElementsByClassName('index');
+	if (indexes.length == 0) {
+		messageUser({
+			message:"No results.",
+			type:"info",
+			hide:true,
+			hide_loading:true
+		});
+		return;
+	}
+	
+	var urls = [];
+	for (var i = 0; i < indexes.length; i++) {
+		// second match is the expression's url on urbandictionary.com
+		urls.push(indexes[i].innerHTML.match(/href=\"(.*?)\"/)[1]);
+	}
+    
     var words = tempDiv.getElementsByClassName('word');
     var definitions = tempDiv.getElementsByClassName('definition');
     var examples = tempDiv.getElementsByClassName('example');
     var tags = tempDiv.getElementsByClassName('greenery');
-
-    var url = indexes[0].innerHTML.match(/href=\"(.*?)\"/);
-	$("#expression").attr("href", url[1])
-	$("#expression").html(words[0].innerHTML);
-	$("#definition").html(updateLinks(definitions[0].innerHTML));
-	$("#example").html(updateLinks(examples[0].innerHTML));
-
-	if ($("#example").html().length == 0) {
-		$("#example").hide();
-	} else {
-		$("#example").show();
-	}
 	
-	$("#inner_body").show("blind");
-	$("#loading_animation").hide("scale");
-	
-	var clean_tags = getTags(tags[1]);
-    
+	var clean_tags = getTags(tags[0]);
+	var element_tags = [];    
     for (var i = 0; i < clean_tags.length; i++) {
         var tag = document.createElement('a');
         tag.className = 'tag';
-        tag.href = "javascript:onSelection(\"" + clean_tags[i] + "\");";
+        tag.href = "javascript:search(\"" + clean_tags[i] + "\");";
 		tag.innerHTML = clean_tags[i];
-
-        $("#tags").append(tag);
+		element_tags.push(tag);
     }
+
+	var clean_fields = {
+		expression: words[0].innerHTML,
+		url: urls[0],
+		definition: updateLinks(definitions[0].innerHTML),
+		example: updateLinks(examples[0].innerHTML),
+		tags: element_tags
+	};
+	
+	showInformation(clean_fields);
 }
 
 function getTags(raw_tags) {
     var tags = raw_tags.getElementsByClassName("urbantip");
     var clean_tags = [];
 
-    // last tag is ignored because it is the author
     for (var i = 0; i < tags.length - 1; i++) {
-        clean_tags.push(strip(tags[i].innerHTML));
+        clean_tags.push(trim(tags[i].innerHTML));
     }
 
     return clean_tags;
+}
+
+function showInformation(fields) {	
+	$("#expression").attr("href", fields["expression_url"]);
+	$("#expression").html(fields["expression"]);
+	$("#definition").html(fields["definition"]);
+	$("#example").html(fields["example"]);
+	if ($("#example").html().length == 0) {
+		$("#example").hide();
+	} else {
+		$("#example").show();
+	}
+	
+	$("tags").empty();
+	var tags = fields["tags"];
+	for (var i = 0; i < tags.length; i++) {
+    	$("tags").append(tags[i]);
+	}
+	
+	$("#inner_body").show("highlight", {color:"#BBBBBB"});
+	$("#loading_animation").hide("scale");
+	$("#message_box").hide();
+}
+
+function messageUser(params) {
+	console.log(params["hide"]);
+	if (params["hide"] == true) {
+		console.log("its true");
+		$("#inner_body").hide();
+	}
+	if (params["hide_loading"] == true) {
+		$("#loading_animation").hide("scale");
+	}
+	
+	$("#message_box")
+	.addClass(params["type"])
+	.html(params["message"])
+	.show("highlight");	
 }
 
 function trim(s) {
@@ -98,144 +158,3 @@ function updateLinks(html) {
 	return html.replace(/<a.+href=".*?".*>(.*?)<\/a>/gi, "<a class=\"tag\" href=\"javascript:search(\'$1\');\">$1</a>");
 }
 
-/*
-var req;
-var search_link;
-var search_query;
-
-function onSelection(query) {
-    clearList();
-
-    var query_field = document.getElementById("query_field");
-    if (typeof(query) == "undefined") {
-        query = query_field.value;
-        document.getElementById("query_field");
-    } else {
-        query_field.value = query;
-    }
-    query = prepareString(query);
-
-    if (typeof(query) != "undefined" && query.length > 0) {
-
-				search_query = query;
-
-        setFooter({
-            message: "searching...",
-            href: null,
-            search_animation: true
-        });
-
-        var req = new XMLHttpRequest();
-        search_link = 'http://www.urbandictionary.com/define.php?term=' + query;
-        req.open('GET', search_link, true);
-        req.onreadystatechange = function(aEvt) {
-            if (req.readyState == 4) {
-                if (req.status == 200) {
-                    parseResponse(req.responseText);
-                }
-                else {
-                    console.log("Error loading page\n");
-                }
-            }
-        };
-
-        req.send(null);
-    } else {
-        setFooter({
-            message: "search an expression",
-            href: null,
-            search_animation: false
-        });
-    }
-};
-
-function parseResponse(response) {
-    var tempDiv = document.createElement('div');
-    tempDiv.innerHTML = response.replace("/<script(.|\s)*?\/script>/g", '');
-
-    var indexes = tempDiv.getElementsByClassName('index');
-    var words = tempDiv.getElementsByClassName('word');
-    var definitions = tempDiv.getElementsByClassName('definition');
-    var examples = tempDiv.getElementsByClassName('example');
-    var tags = tempDiv.getElementsByClassName('greenery');
-
-    var list = document.getElementById("list");
-    var results = document.createElement('div');
-    results.id = 'results';
-
-    for (var i = 0; i < words.length && i < 1; i++) {
-        var url = indexes[i].innerHTML.match(/href=\"(.*?)\"/);
-
-        var result = document.createElement('div');
-        result.className = 'result';
-
-        var word = document.createElement('div');
-        word.className = 'word';
-        word.innerHTML = "<a target=\"_blank\" href=\"" + url[1] + "\">" + words[i].innerHTML + "</a>";
-        result.appendChild(word);
-
-        var definition = document.createElement('div');
-        definition.className = 'definition';
-        definition.innerHTML = strip(definitions[i].innerHTML);
-
-        if (examples[i].innerHTML != "") {
-            var example = document.createElement('div');
-            example.className = 'example';
-            example.innerHTML = strip(examples[i].innerHTML);
-            // example.innerHTML = examples[i].innerHTML;
-            definition.appendChild(example);
-        }
-
-        var clean_tags = getTags(tags[i + 1]);
-        if (clean_tags.length > 0) {
-            var tags_element = document.createElement('div');
-            tags_element.className = 'tags';
-
-            for (var i = 0; i < clean_tags.length; i++) {
-                var tag = document.createElement('a');
-                tag.className = 'tag';
-                tag.href = "javascript:onSelection(\"" + clean_tags[i] + "\");";
-                tag.innerHTML = clean_tags[i];
-
-                tags_element.appendChild(tag);
-            }
-
-            definition.appendChild(tags_element);
-        }
-
-        result.appendChild(definition);
-        results.appendChild(result);
-    }
-
-    if (words.length > 0) {
-        list.appendChild(results);
-        setFooter("more results", search_link, false);
-
-        setFooter({
-            message: "more results",
-            href: search_link,
-            search_animation: false
-        });
-    } else {
-        var link = "http://www.google.com/search?q=" +
-
-        setFooter({
-            message: "no results, but click here to try Google",
-            href: "http://www.google.com/search?q=" + search_query,
-            search_animation: false
-        });
-    }
-}
-
-function getTags(raw_tags) {
-    var tags = raw_tags.getElementsByClassName("urbantip");
-    var clean_tags = [];
-
-    // last tag is ignored because it is the author
-    for (var i = 0; i < tags.length - 1; i++) {
-        clean_tags.push(strip(tags[i].innerHTML));
-    }
-
-    return clean_tags;
-}
-*/
