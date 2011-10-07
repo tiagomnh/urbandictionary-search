@@ -42,13 +42,15 @@ a {
 }
 
 #extension_name {
-	margin-left:5px;
-	font-size: 17px;
+	padding-left:6px;
+	padding-right:6px;
+	font-size: 18px;
 	color:#DDDDDD;
 }
 
 #extension_name:hover{
 	color:#FFFFFF;
+	background: -webkit-gradient(linear,0% 0,0% 100%,from(#303030),to(#000000));
 }
 
 #bar_right {
