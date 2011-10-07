@@ -9,6 +9,7 @@ function handleFormSubmit(query) {
 function search(query) {
 	$("#search_input").val(query);
 	$("#loading_animation").show("scale");
+	//$("#loading_animation").css({"visibility":"visible"})
 	var url_query = replaceSpacesWithPlus(trim(query));
 	
 	var req = new XMLHttpRequest();
@@ -115,25 +116,25 @@ function showInformation(fields) {
 		$("#example").show();
 	}
 	
-	$("tags").empty();
+	$("#tags").empty();
 	var tags = fields["tags"];
 	for (var i = 0; i < tags.length; i++) {
-    	$("tags").append(tags[i]);
+    	$("#tags").append(tags[i]);
 	}
 	
 	$("#inner_body").show("highlight", {color:"#BBBBBB"});
 	$("#loading_animation").hide("scale");
+	//$("#loading_animation").css({"visibility":"hidden"})
 	$("#message_box").hide();
 }
 
 function messageUser(params) {
-	console.log(params["hide"]);
 	if (params["hide"] == true) {
-		console.log("its true");
 		$("#inner_body").hide();
 	}
 	if (params["hide_loading"] == true) {
 		$("#loading_animation").hide("scale");
+		//$("#loading_animation").css({"visibility":"hidden"})
 	}
 	
 	$("#message_box")
