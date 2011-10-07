@@ -9,20 +9,20 @@
 	<script type="text/javascript" src="/js/popup.js"></script>
 </head>
 <body>
+	<!-- search/nav bar -->
 	<div id="top_bar">
-		<table>
-			<tr>
-				<td style="width:100%"/>
-				<td>
-					<img id="loading_animation" src="/images/loading.gif"/>
-				</td>
-				<td>
-					<input id="search_input" type="text" size="25" maxlength="25"/>
-				</td>
-			</tr>
-		</table>
+		<div id="bar_left">
+			<div id="extension_name">
+				udsearch
+			</div>
+		</div>
+		<div id="bar_right">
+			<img id="loading_animation" src="/images/loading.gif"/>
+			<input id="search_input" type="text" size="25" maxlength="25"/>		
+		</div>		
 	</div>
-	
+		
+	<!-- body -->
 	<div id="outer_body">
 		<div id="inner_body">
 			<a id="expression"></a>
@@ -42,6 +42,7 @@
 		chrome.tabs.executeScript(null, { file: "/js/request.js" });
 		
 		$('#search_input').keypress(function(e) {
+			// if pressed key == 'Enter'
 	        if(e.which == 13) {
 				handleFormSubmit($("#search_input").val());
 	        }
