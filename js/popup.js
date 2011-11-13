@@ -2,7 +2,12 @@ function handleFormSubmit(query) {
 	if (query.length > 0) {
 		search(query);
 	} else {
-		// put info in message_box
+		messageUser({
+			message:"Write something in the text box and press 'Enter'.",
+			type:"info",
+			hide:true,
+			hide_loading:true
+		});
 	}
 }
 
@@ -138,13 +143,18 @@ function messageUser(params) {
 	}
 	
 	$("#message_box")
-	.addClass(params["type"])
-	.html(params["message"])
-	.show("highlight");	
+		.addClass(params["type"])
+		.html(params["message"])
+		.show("highlight");	
 }
 
+
 function trim(s) {
-	return s.replace(/^\s+|\s+$/g, "");
+	// removes leading and trailing spaces
+	s = s.replace(/^\s+|\s+$/g, "");
+	// removes repeated spaces in the middle of the string
+	s = s.replace(/\s+/gi,' ');
+	return s;
 }
  
 function replaceSpacesWithPlus(s) {
@@ -155,6 +165,7 @@ function removeScriptTags(s) {
 	return s.replace("/<script(.|\s)*?\/script>/g", '');
 }
 
+// replaces links to other definitions with calls to function search()
 function updateLinks(html) {
 	return html.replace(/<a.+href=".*?".*>(.*?)<\/a>/gi, "<a class=\"tag\" href=\"javascript:search(\'$1\');\">$1</a>");
 }
