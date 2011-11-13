@@ -29,10 +29,10 @@
 			<div id="definition"></div>
 			<div id="example"></div>
 			<div id="tags"></div>	
-		</div>
-		
-		<div id="message_box"></div>
+		</div>		
 	</div>
+	
+	<div id="message_box"></div>
 </body>
 <script type="text/javascript">
 	$(window).load(function() {
@@ -43,7 +43,7 @@
 		
 		$('#search_input').keypress(function(e) {
 			// if pressed key == 'Enter'
-	        if(e.which == 13) {
+	        if (e.which == 13) {
 				handleFormSubmit($("#search_input").val());
 	        }
 	    });
