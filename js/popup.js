@@ -18,9 +18,16 @@ function search(query) {
 	var url_query = replaceSpacesWithPlus(trim(query));
 	
 	var req = new XMLHttpRequest();
-    search_link = 'http://www.urbandictionary.com/define.php?term=' + url_query;
-    req.open('GET', search_link, true);
+    var search_url = 'http://www.urbandictionary.com/define.php?term=' + url_query;
+    
+	$.ajax({
+	  url: search_url,
+	  success: function(data) {
+		parseResponse(data);
+	}});
 
+	/*
+	req.open('GET', search_url, true);
     req.onreadystatechange = function(event) {
         if (req.readyState == 4) {
             if (req.status == 200) {
@@ -37,6 +44,7 @@ function search(query) {
             }
         } 
     };
+	*/
 
 	/*
 	var xmlHttpTimeout = setTimeout(ajaxTimeout, 5000);
