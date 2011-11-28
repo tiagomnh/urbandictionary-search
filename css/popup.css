@@ -146,27 +146,26 @@ a {
 
 #message_box {
 	display: none;
-	margin: 8px;
-	border: solid 1px;
-	padding: 5px;
 	text-align: center;
-	font-weight: bold;
 }
 
 .error {
 	color: #B40404;
-	border-color: #B40404;
-	background: #F5A9A9;
+	padding: 5px;
+}
+
+.error a {
+	color: #B40404;
+	text-decoration: underline;
 }
 
 .warning {
 	color: #FBAF5C;
-	border-color: #FBAF5C;
-	background: #FFF79A;
+	padding: 5px;
 }
 
 .info {
-	color: #23819C;
-	border-color: #23819C;
-	background: #A1D5E5;
+	color: #4183C4;
+	padding: 5px;
 }
+

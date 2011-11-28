@@ -3,7 +3,7 @@ function handleFormSubmit(query) {
 		search(query);
 	} else {
 		messageUser({
-			message:"Write something in the text box and press 'Enter'.",
+			message:"<b>info:</b> type something in the search box first",
 			type:"info",
 			hide:true,
 			hide_loading:true
@@ -25,7 +25,7 @@ function search(query) {
 		},
 		error: function() {
 			messageUser({
-				message:"Error. <a href=\"javascript:search('" + query + "');\">Try again.</a>",
+				message:"<b>error:</b> <a href=\"javascript:search('" + query + "');\">try again</a>",
 				type:"error",
 				hide:true,
 				hide_loading:true
