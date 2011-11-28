@@ -1,3 +1,6 @@
+### v1.1 ()
+* fixed bug when presenting a large number of tags
+
 ### v1.0 (11-10-2011)
 * restructured code
 * new ui
