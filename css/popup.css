@@ -118,12 +118,16 @@ a {
 }
 
 #tags {
+	height: auto;
+	line-height: 20px;
 	border-top: 1px solid #DDD;
 	margin-top: 5px;
 	padding: 10px;
+	overflow-y: scroll;
 }
 
 .tag {
+	white-space: pre;
 	margin-right: 2px;
 	padding-left: 3px;
 	padding-right: 3px;
