@@ -1,6 +1,7 @@
 ### v1.1 ()
 * fixed bug when presenting a large number of tags
 * now uses jquery to perform http reqs
+* improved info/error messages
 
 ### v1.0 (11-10-2011)
 * restructured code
