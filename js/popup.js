@@ -115,6 +115,7 @@ function showInformation(fields) {
 	$("#message_box").hide();
 }
 
+// hides definition body and presents the message passed in params
 function messageUser(params) {
 	if (params["hide"] == true) {
 		$("#inner_body").hide();
