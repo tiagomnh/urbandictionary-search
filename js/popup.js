@@ -14,50 +14,24 @@ function handleFormSubmit(query) {
 function search(query) {
 	$("#search_input").val(query);
 	$("#loading_animation").show("scale");
-	//$("#loading_animation").css({"visibility":"visible"})
+
 	var url_query = replaceSpacesWithPlus(trim(query));
-	
-	var req = new XMLHttpRequest();
-    var search_url = 'http://www.urbandictionary.com/define.php?term=' + url_query;
+	var search_url = 'http://www.urbandictionary.com/define.php?term=' + url_query;
     
 	$.ajax({
-	  url: search_url,
-	  success: function(data) {
-		parseResponse(data);
-	}});
-
-	/*
-	req.open('GET', search_url, true);
-    req.onreadystatechange = function(event) {
-        if (req.readyState == 4) {
-            if (req.status == 200) {
-                parseResponse(req.responseText);
-            }
-            else {
-				// error
-				messageUser({
-					message:"Error. <a href=\"javascript:search('" + query + "');\">Try again.</a>",
-					type:"error",
-					hide:true,
-					hide_loading:true
-				});
-            }
-        } 
-    };
-	*/
-
-	/*
-	var xmlHttpTimeout = setTimeout(ajaxTimeout, 5000);
-	function ajaxTimeout() {
-		messageUser({
-			message:"Error. <a href=\"javascript:search('" + query + "');\">Try again.</a>",
-			type:"error",
-			hide:true
-		});
-	}
-	*/
-
-	req.send(null);
+		url: search_url,
+		success: function(data) {
+			parseResponse(data);
+		},
+		error: function() {
+			messageUser({
+				message:"Error. <a href=\"javascript:search('" + query + "');\">Try again.</a>",
+				type:"error",
+				hide:true,
+				hide_loading:true
+			});
+		}
+	});
 }
 
 function parseResponse(response) {	
