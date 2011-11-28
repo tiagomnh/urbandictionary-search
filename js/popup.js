@@ -41,7 +41,7 @@ function parseResponse(response) {
     var indexes = tempDiv.getElementsByClassName('index');
 	if (indexes.length == 0) {
 		messageUser({
-			message:"No results.",
+			message:"<b>info:</b> no results.",
 			type:"info",
 			hide:true,
 			hide_loading:true
