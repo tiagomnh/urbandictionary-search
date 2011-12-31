@@ -1,3 +1,6 @@
+### v1.2
+* added GA tracking
+
 ### v1.1 (28-11-2011)
 * fixed bug when presenting a large number of tags
 * now uses jquery to perform http reqs
