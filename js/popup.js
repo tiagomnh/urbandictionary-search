@@ -15,7 +15,7 @@ function search(query) {
 	$("#search_input").val(query);
 	$("#loading_animation").show("scale");
 
-	var url_query = replaceSpacesWithPlus(trim(query));
+	var url_query = encodeURIComponent(trim(query));
 	var search_url = 'http://www.urbandictionary.com/define.php?term=' + url_query;
     
 	$.ajax({
@@ -140,10 +140,6 @@ function trim(s) {
 	return s;
 }
  
-function replaceSpacesWithPlus(s) {
-    return s.replace(/ /g, "+");
-}
-
 function removeScriptTags(s) {
 	return s.replace("/<script(.|\s)*?\/script>/g", '');
 }
