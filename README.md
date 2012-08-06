@@ -1,7 +1,5 @@
 # Urban Dictionary Search
 
----
-
 ## Description
 
 Simple Google Chrome extension that allows the quick search of definitions on [Urban Dictionary](http://www.urbandictionary.com/).
