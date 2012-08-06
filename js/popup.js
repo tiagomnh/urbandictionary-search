@@ -17,7 +17,7 @@ function search(query) {
 
 	var url_query = encodeURIComponent(trim(query));
 	var search_url = 'http://www.urbandictionary.com/define.php?term=' + url_query;
-    
+
 	$.ajax({
 		url: search_url,
 		success: function(data) {
@@ -34,7 +34,7 @@ function search(query) {
 	});
 }
 
-function parseResponse(response) {	
+function parseResponse(response) {
 	var tempDiv = document.createElement('div');
     tempDiv.innerHTML = removeScriptTags(response);
 
@@ -48,20 +48,20 @@ function parseResponse(response) {
 		});
 		return;
 	}
-	
+
 	var urls = [];
 	for (var i = 0; i < indexes.length; i++) {
 		// second match is the expression's url on urbandictionary.com
 		urls.push(indexes[i].innerHTML.match(/href=\"(.*?)\"/)[1]);
 	}
-    
+
     var words = tempDiv.getElementsByClassName('word');
     var definitions = tempDiv.getElementsByClassName('definition');
     var examples = tempDiv.getElementsByClassName('example');
     var tags = tempDiv.getElementsByClassName('greenery');
-	
+
 	var clean_tags = getTags(tags[0]);
-	var element_tags = [];    
+	var element_tags = [];
     for (var i = 0; i < clean_tags.length; i++) {
         var tag = document.createElement('a');
         tag.className = 'tag';
@@ -77,7 +77,7 @@ function parseResponse(response) {
 		example: updateLinks(examples[0].innerHTML),
 		tags: element_tags
 	};
-	
+
 	showInformation(clean_fields);
 }
 
@@ -92,7 +92,7 @@ function getTags(raw_tags) {
     return clean_tags;
 }
 
-function showInformation(fields) {	
+function showInformation(fields) {
 	$("#expression").attr("href", fields["expression_url"]);
 	$("#expression").html(fields["expression"]);
 	$("#definition").html(fields["definition"]);
@@ -102,13 +102,13 @@ function showInformation(fields) {
 	} else {
 		$("#example").show();
 	}
-	
+
 	$("#tags").empty();
 	var tags = fields["tags"];
 	for (var i = 0; i < tags.length; i++) {
     	$("#tags").append(tags[i]);
 	}
-	
+
 	$("#inner_body").show("highlight", {color:"#BBBBBB"});
 	$("#loading_animation").hide("scale");
 	//$("#loading_animation").css({"visibility":"hidden"})
@@ -124,11 +124,11 @@ function messageUser(params) {
 		$("#loading_animation").hide("scale");
 		//$("#loading_animation").css({"visibility":"hidden"})
 	}
-	
+
 	$("#message_box")
 		.addClass(params["type"])
 		.html(params["message"])
-		.show("highlight");	
+		.show("highlight");
 }
 
 
@@ -139,7 +139,7 @@ function trim(s) {
 	s = s.replace(/\s+/gi,' ');
 	return s;
 }
- 
+
 function removeScriptTags(s) {
 	return s.replace("/<script(.|\s)*?\/script>/g", '');
 }
@@ -149,3 +149,36 @@ function updateLinks(html) {
 	return html.replace(/<a.+href=".*?".*>(.*?)<\/a>/gi, "<a class=\"tag\" href=\"javascript:search(\'$1\');\">$1</a>");
 }
 
+// track access
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-27979301-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = 'https://ssl.google-analytics.com/ga.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+$(window).load(function() {
+	$("#search_input").focus();
+
+	chrome.extension.onRequest.addListener(function(selection) {
+		_gaq.push(['_trackEvent', 'Search', 'selection']);
+		search(selection);
+	});
+
+	chrome.tabs.executeScript(null, { file: "/js/request.js" });
+
+	$('#search_input').keypress(function(e) {
+		// if pressed key == 'Enter'
+		var key = e.keyCode || e.which;
+        if (key == 13) {
+			// tracks search event
+			_gaq.push(['_trackEvent', 'Search', 'form']);
+
+			$('#message_box').val('asdas');
+			handleFormSubmit($("#search_input").val());
+        }
+    });
+});

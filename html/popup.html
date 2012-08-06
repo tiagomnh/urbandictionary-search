@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
 <head>
 	<base target="_blank" />
@@ -17,53 +17,20 @@
 		</div>
 		<div id="bar_right">
 			<img id="loading_animation" src="/images/loading.gif"/>
-			<input id="search_input" type="text" size="25" maxlength="25"/>		
-		</div>		
+			<input id="search_input" type="text" size="25" maxlength="25"/>
+		</div>
 	</div>
-		
+
 	<!-- body -->
 	<div id="outer_body">
 		<div id="inner_body">
 			<a id="expression"></a>
 			<div id="definition"></div>
 			<div id="example"></div>
-			<div id="tags"></div>	
-		</div>		
+			<div id="tags"></div>
+		</div>
 	</div>
-	
+
 	<div id="message_box"></div>
 </body>
-<script type="text/javascript">
-	var _gaq = _gaq || [];
-	_gaq.push(['_setAccount', 'UA-27979301-1']);
-	_gaq.push(['_trackPageview']);
-
-	(function() {
-		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		ga.src = 'https://ssl.google-analytics.com/ga.js';
-		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	})();
-
-	$(window).load(function() {
- 		$("#search_input").focus();
-				
-		//chrome.extension.onRequest.addListener(search);	
-		chrome.extension.onRequest.addListener(function(selection) {
-			_gaq.push(['_trackEvent', 'Search', 'selection']);
-			search(selection);
-		});
-		
-		chrome.tabs.executeScript(null, { file: "/js/request.js" });
-		
-		$('#search_input').keypress(function(e) {
-			// if pressed key == 'Enter'
-	        if (e.which == 13) {
-				// tracks search event
-				_gaq.push(['_trackEvent', 'Search', 'form']);
-				
-				handleFormSubmit($("#search_input").val());
-	        }
-	    });
- 	});
-</script>
 </html>
