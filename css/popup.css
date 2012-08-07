@@ -14,6 +14,10 @@ a {
     color: #000000;
 }
 
+#container {
+	margin: 5px;
+}
+
 #search {
 
 }
@@ -22,39 +26,35 @@ a {
 	margin: 0;
 	color: #333333;
 	padding: 5px;
-	margin: 5px;
 	font-size: 13px;
 	line-height: 18px;
 	width: 386px;
 }
 
-#outer_body {
-	margin-top: -5px;
-}
-
 #inner_body {
+	padding: 10px;
+    width: 378px;
     display: none;
+    background-color: whiteSmoke;
     -webkit-border-bottom-right-radius: 5px;
     -webkit-border-bottom-left-radius: 5px;
     -moz-border-radius-bottomright: 5px;
     -moz-border-radius-bottomleft: 5px;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
-    margin: 0px 4px 4px 4px;
     background-color: whiteSmoke;
     border: 1px solid #DDD;
     border-top: none;
-    padding-top: 5px;
 }
 
 #expression {
-    font-size: 14px;
-    font-weight: bold;
-    padding: 8px;
+    font-size: 18px;
+    font-style: italic;
 }
 
 #definition {
-    padding: 15px;
+    padding-top: 10px;
+    padding-left: 0px;
 }
 
 #example {
@@ -64,7 +64,7 @@ a {
     border-radius: 5px;
     font-style: italic;
     border: 1px solid #DDD;
-    margin: 0px 10px 10px 10px;
+    margin:	10px 0px 0px 0px;
     padding: 5px;
 }
 
@@ -72,8 +72,11 @@ a {
     height: auto;
     line-height: 20px;
     border-top: 1px solid #DDD;
-    margin-top: 5px;
+    margin-top: 15px;
     padding: 10px;
+    padding-bottom: 0px;
+    width: 380px;
+    margin-left: -10px;
 }
 
 .tag {
@@ -92,8 +95,10 @@ a {
 }
 
 #message_box {
-    display: none;
     text-align: center;
+    font-size: 14px;
+    margin-top: 5px;
+	display: none;
 }
 
 .error {
