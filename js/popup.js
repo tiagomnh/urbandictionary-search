@@ -109,7 +109,7 @@ function showInformation(fields) {
     	$("#tags").append(tags[i]);
 	}
 
-	$("#inner_body").show("highlight", {color:"#BBBBBB"});
+	$("#inner_body").show("fade", {color:"#BBBBBB"});
 	$("#loading_animation").hide("scale");
 	//$("#loading_animation").css({"visibility":"hidden"})
 	$("#message_box").hide();
@@ -128,7 +128,7 @@ function messageUser(params) {
 	$("#message_box")
 		.addClass(params["type"])
 		.html(params["message"])
-		.show("highlight");
+		.show("fade");
 }
 
 
