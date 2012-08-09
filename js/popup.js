@@ -65,7 +65,7 @@ function parseResponse(response) {
 		tags: elementTags
 	};
 
-	showInformation(cleanFields);
+	displayInformation(cleanFields);
 }
 
 function getTags(rawTags) {
@@ -79,10 +79,21 @@ function getTags(rawTags) {
     return cleanTags;
 }
 
-function showInformation(fields) {
-	//$("#expression").attr("href", fields["expression_url"]);
+function hideEverything() {
+	$('#innerBody').hide();
+	$('#expression').hide();
+	$('tr').hide();
+}
+
+function displayInformation(fields) {
+	$("#message").hide();
+	$("#message").next().hide();
+
 	$("#expression").html(fields["expression"]);
+	//$("#expression").attr("href", fields["expression_url"]);
+
 	$("#definition > .content").html(fields["definition"]);
+
 	$("#example > .content").html(fields["example"]);
 	if ($("#example > .content").html().length == 0) {
 		$("#example").hide();
