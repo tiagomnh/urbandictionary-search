@@ -106,7 +106,7 @@ function showInformation(fields) {
 		$("#tags").next().show();
 	}
 
-	$("#inner_body").show("fade", {color:"#BBBBBB"});
+	$("#innerBody").show("fade", {color:"#BBBBBB"});
 	$("#loading_animation").hide("scale");
 	//$("#loading_animation").css({"visibility":"hidden"})
 	$("#message_box").hide();
@@ -115,7 +115,7 @@ function showInformation(fields) {
 // hides definition body and presents the message passed in params
 function messageUser(params) {
 	if (params["hide"] == true) {
-		$("#inner_body").hide();
+		$("#innerBody").hide();
 	}
 	if (params["hide_loading"] == true) {
 		$("#loading_animation").hide("scale");
