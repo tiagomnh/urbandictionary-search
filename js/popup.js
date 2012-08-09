@@ -7,8 +7,7 @@ function handleFormSubmit(query) {
 }
 
 function search(query) {
-	$("#search_input").val(query);
-	$("#loading_animation").show("scale");
+	$("#searchInput").val(query);
 
 	var search_url = 'http://www.urbandictionary.com/define.php';
 
@@ -153,7 +152,7 @@ function updateLinks(html) {
  *	STARTUP
  */
 $(window).load(function() {
-	$("#search_input").focus();
+	$("#searchInput").focus();
 
 	chrome.extension.onRequest.addListener(function(selection) {
 		search(selection);
@@ -161,11 +160,11 @@ $(window).load(function() {
 
 	chrome.tabs.executeScript(null, { file: "/js/request.js" });
 
-	$('#search_input').keypress(function(e) {
+	$('#searchInput').keypress(function(e) {
 		// if pressed key == 'Enter'
 		var key = e.keyCode || e.which;
         if (key == 13) {
-			handleFormSubmit($("#search_input").val());
+			handleFormSubmit($("#searchInput").val());
         }
     });
 });
