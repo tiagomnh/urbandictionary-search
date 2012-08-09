@@ -141,7 +141,9 @@ function messageUser(params) {
 		.show("fade");
 }
 
-
+/*
+ *	REGEXES
+ */
 function trim(s) {
 	// removes leading and trailing spaces
 	s = s.replace(/^\s+|\s+$/g, "");
@@ -159,22 +161,13 @@ function updateLinks(html) {
 	return html.replace(/<a.+href=".*?".*>(.*?)<\/a>/gi, "<a class=\"tag\" href=\"javascript:search(\'$1\');\">$1</a>");
 }
 
-// track access
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-27979301-1']);
-_gaq.push(['_trackPageview']);
-
-(function() {
-	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	ga.src = '/js/ga.js';
-	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})();
-
+/*
+ *	STARTUP
+ */
 $(window).load(function() {
 	$("#search_input").focus();
 
 	chrome.extension.onRequest.addListener(function(selection) {
-		_gaq.push(['_trackEvent', 'Search', 'selection']);
 		search(selection);
 	});
 
@@ -184,11 +177,8 @@ $(window).load(function() {
 		// if pressed key == 'Enter'
 		var key = e.keyCode || e.which;
         if (key == 13) {
-			// tracks search event
-			_gaq.push(['_trackEvent', 'Search', 'form']);
-
-			$('#message_box').val('asdas');
 			handleFormSubmit($("#search_input").val());
         }
     });
 });
+
