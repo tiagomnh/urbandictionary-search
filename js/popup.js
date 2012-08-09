@@ -9,7 +9,7 @@ function handleFormSubmit(query) {
 function search(query) {
 	$("#searchInput").val(query);
 
-	var search_url = 'http://www.urbandictionary.com/define.php';
+	var searchUrl = 'http://www.urbandictionary.com/define.php';
 
 	$.ajax({
 		url: search_url,
