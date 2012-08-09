@@ -95,18 +95,28 @@ function getTags(raw_tags) {
 function showInformation(fields) {
 	$("#expression").attr("href", fields["expression_url"]);
 	$("#expression").html(fields["expression"]);
-	$("#definition").html(fields["definition"]);
-	$("#example").html(fields["example"]);
-	if ($("#example").html().length == 0) {
+	$("#definition > .content").html(fields["definition"]);
+	$("#example > .content").html(fields["example"]);
+	if ($("#example > .content").html().length == 0) {
 		$("#example").hide();
+		$("#example").next().hide();
 	} else {
 		$("#example").show();
+		$("#example").next().show();
 	}
 
-	$("#tags").empty();
+	$("#tags > .content").empty();
 	var tags = fields["tags"];
-	for (var i = 0; i < tags.length; i++) {
-    	$("#tags").append(tags[i]);
+	if (tags.length == 0) {
+		$("#tags").hide();
+		$("#tags").next().hide();
+	}
+	else {
+		for (var i = 0; i < tags.length; i++) {
+    		$("#tags > .content").append(tags[i]);
+		}
+		$("#tags").show();
+		$("#tags").next().show();
 	}
 
 	$("#inner_body").show("fade", {color:"#BBBBBB"});
