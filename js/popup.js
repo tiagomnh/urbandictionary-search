@@ -15,11 +15,14 @@ function search(query) {
 	$("#search_input").val(query);
 	$("#loading_animation").show("scale");
 
-	var url_query = encodeURIComponent(trim(query));
-	var search_url = 'http://www.urbandictionary.com/define.php?term=' + url_query;
+	var search_url = 'http://www.urbandictionary.com/define.php';
 
 	$.ajax({
 		url: search_url,
+		type: "GET",
+		data: {
+			'term': query
+		},
 		success: function(data) {
 			parseResponse(data);
 		},
