@@ -2,12 +2,7 @@ function handleFormSubmit(query) {
 	if (query.length > 0) {
 		search(query);
 	} else {
-		messageUser({
-			message:"<b>info:</b> type something in the search box first",
-			type:"info",
-			hide:true,
-			hide_loading:true
-		});
+		// message user with usage info
 	}
 }
 
@@ -27,12 +22,7 @@ function search(query) {
 			parseResponse(data);
 		},
 		error: function() {
-			messageUser({
-				message:"<b>error:</b> <a href=\"javascript:search('" + query + "');\">try again</a>",
-				type:"error",
-				hide:true,
-				hide_loading:true
-			});
+			// message user with error
 		}
 	});
 }
@@ -43,12 +33,7 @@ function parseResponse(response) {
 
     var indexes = tempDiv.getElementsByClassName('index');
 	if (indexes.length == 0) {
-		messageUser({
-			message:"<b>info:</b> no results.",
-			type:"info",
-			hide:true,
-			hide_loading:true
-		});
+		// no results
 		return;
 	}
 
