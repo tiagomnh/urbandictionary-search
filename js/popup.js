@@ -107,25 +107,6 @@ function showInformation(fields) {
 	}
 
 	$("#innerBody").show("fade", {color:"#BBBBBB"});
-	$("#loading_animation").hide("scale");
-	//$("#loading_animation").css({"visibility":"hidden"})
-	$("#message_box").hide();
-}
-
-// hides definition body and presents the message passed in params
-function messageUser(params) {
-	if (params["hide"] == true) {
-		$("#innerBody").hide();
-	}
-	if (params["hide_loading"] == true) {
-		$("#loading_animation").hide("scale");
-		//$("#loading_animation").css({"visibility":"hidden"})
-	}
-
-	$("#message_box")
-		.addClass(params["type"])
-		.html(params["message"])
-		.show("fade");
 }
 
 /*
