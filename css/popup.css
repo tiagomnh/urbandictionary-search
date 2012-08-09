@@ -30,6 +30,7 @@ a {
 
 #innerBody {
 	padding: 10px;
+    padding-top: 0px;
     display: none;
     background-color: whiteSmoke;
     -webkit-border-bottom-right-radius: 5px;
@@ -45,7 +46,6 @@ a {
 #expression {
     font-size: large;
     font-weight: bold;
-    font-smooth: always;
     margin-bottom: 3px;
 }
 
