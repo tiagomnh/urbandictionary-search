@@ -12,7 +12,7 @@ function search(query) {
 	var searchUrl = 'http://www.urbandictionary.com/define.php';
 
 	$.ajax({
-		url: search_url,
+		url: searchUrl,
 		type: "GET",
 		data: {
 			'term': query
@@ -47,40 +47,40 @@ function parseResponse(response) {
     var examples = tempDiv.getElementsByClassName('example');
     var tags = tempDiv.getElementsByClassName('greenery');
 
-	var clean_tags = getTags(tags[0]);
-	var element_tags = [];
-    for (var i = 0; i < clean_tags.length; i++) {
+	var cleanTags = getTags(tags[0]);
+	var elementTags = [];
+    for (var i = 0; i < cleanTags.length; i++) {
         var tag = document.createElement('a');
         tag.className = 'tag';
-        tag.href = "javascript:search(\"" + clean_tags[i] + "\");";
-		tag.innerHTML = clean_tags[i];
-		element_tags.push(tag);
+        tag.href = "javascript:search(\"" + cleanTags[i] + "\");";
+		tag.innerHTML = cleanTags[i];
+		elementTags.push(tag);
     }
 
-	var clean_fields = {
+	var cleanFields = {
 		expression: words[0].innerHTML,
 		url: urls[0],
 		definition: updateLinks(definitions[0].innerHTML),
 		example: updateLinks(examples[0].innerHTML),
-		tags: element_tags
+		tags: elementTags
 	};
 
-	showInformation(clean_fields);
+	showInformation(cleanFields);
 }
 
-function getTags(raw_tags) {
-    var tags = raw_tags.getElementsByClassName("urbantip");
-    var clean_tags = [];
+function getTags(rawTags) {
+    var tags = rawTags.getElementsByClassName("urbantip");
+    var cleanTags = [];
 
     for (var i = 0; i < tags.length - 1; i++) {
-        clean_tags.push(trim(tags[i].innerHTML));
+        cleanTags.push(trim(tags[i].innerHTML));
     }
 
-    return clean_tags;
+    return cleanTags;
 }
 
 function showInformation(fields) {
-	$("#expression").attr("href", fields["expression_url"]);
+	//$("#expression").attr("href", fields["expression_url"]);
 	$("#expression").html(fields["expression"]);
 	$("#definition > .content").html(fields["definition"]);
 	$("#example > .content").html(fields["example"]);
