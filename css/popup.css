@@ -1,12 +1,14 @@
 html, body {
 	overflow: hidden;
-	width: 410px;
+	width: 510px;
 	min-height: 28px;
 	padding: 0px;
 	margin: 0px;
 	background-color: #EEEEEE;
-	font-size: 13px;
+	font-size: small;
 	font-family: "Helvetica Neue", Arial, sans-serif;
+    letter-spacing: 0.25px;
+    line-height: 1.5;
 }
 
 a {
@@ -18,22 +20,16 @@ a {
 	margin: 5px;
 }
 
-#search {
-
-}
-
 #search input {
+    width: 486px;
 	margin: 0;
-	color: #333333;
 	padding: 5px;
-	font-size: 13px;
-	line-height: 18px;
-	width: 386px;
+	font-size: medium;
+    color: #333333;
 }
 
 #inner_body {
 	padding: 10px;
-    width: 378px;
     display: none;
     background-color: whiteSmoke;
     -webkit-border-bottom-right-radius: 5px;
@@ -42,81 +38,42 @@ a {
     -moz-border-radius-bottomleft: 5px;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
-    background-color: whiteSmoke;
     border: 1px solid #DDD;
     border-top: none;
 }
 
 #expression {
-    font-size: 18px;
-    font-style: italic;
+    font-size: large;
+    font-weight: bold;
+    font-smooth: always;
+    margin-bottom: 3px;
 }
 
-#definition {
-    padding-top: 10px;
-    padding-left: 0px;
+table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
-#example {
-    background-color: #FFFFFF;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    font-style: italic;
-    border: 1px solid #DDD;
-    margin:	10px 0px 0px 0px;
-    padding: 5px;
+td {
+    vertical-align: top;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
-#tags {
-    height: auto;
-    line-height: 20px;
-    border-top: 1px solid #DDD;
-    margin-top: 15px;
-    padding: 10px;
-    padding-bottom: 0px;
-    width: 380px;
-    margin-left: -10px;
+.separator {
+    background-color: #dddddd;
 }
 
-.tag {
-    white-space: pre;
-    margin-right: 2px;
-    padding: 1px 3px 1px 3px;
-    background-color: #BFBFBF;
-    color: white;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
+.separator > td {
+    padding: 0;
+    height: 1px;
 }
 
-.tag:hover {
-    background-color: #7E7E7E;
+.label {
+    padding-right: 10px;
+    color: #666666;
 }
 
-#message_box {
-    text-align: center;
-    font-size: 14px;
-    margin-top: 5px;
-	display: none;
-}
-
-.error {
-    color: #B40404;
-    padding: 5px;
-}
-
-.error a {
-    color: #B40404;
-    text-decoration: underline;
-}
-
-.warning {
-    color: #FBAF5C;
-    padding: 5px;
-}
-
-.info {
-    color: #4183C4;
-    padding: 5px;
+.content {
+    width: 100%;
 }
