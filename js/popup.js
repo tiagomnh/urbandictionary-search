@@ -2,11 +2,11 @@ function handleFormSubmit(query) {
 	if (query.length > 0) {
 		search(query);
 	} else {
-		message = new Object();
-		message.type = "information";
-		message.label = "Information";
-		message.content = "Use the search box to search for words or phrases.";
-		displayMessage(message);
+		displayMessage({
+			type: "information",
+			label: "Information",
+			content: "Use the search box to search for words or phrases.",
+		});
 	}
 }
 
@@ -25,11 +25,11 @@ function search(query) {
 			parseResponse(data);
 		},
 		error: function() {
-			message = new Object();
-			message.type = "error";
-			message.label = "Error";
-			message.content = "There was an error.";
-			displayMessage(message);
+			displayMessage({
+				type: "error",
+				label: "Error",
+				content: "There was an error.",
+			});
 		}
 	});
 }
@@ -40,11 +40,11 @@ function parseResponse(response) {
 
     var indexes = tempDiv.getElementsByClassName('index');
 	if (indexes.length == 0) {
-		message = new Object();
-		message.type = "warning";
-		message.label = "No results";
-		message.content = "Try searching for something else.";
-		displayMessage(message);
+		displayMessage({
+			type: "warning",
+			label: "No results",
+			content: "Try searching for something else.",
+		});
 		return;
 	}
 
@@ -85,6 +85,7 @@ function getTags(rawTags) {
     var cleanTags = [];
 
     for (var i = 0; i < tags.length - 1; i++) {
+    	console.log(tags[i]);
         cleanTags.push(trim(tags[i].innerHTML));
     }
 
@@ -136,8 +137,8 @@ function displayInformation(fields) {
 }
 
 function displayMessage(message) {
-	$("#message > .label").html($("<span>").addClass(message.type).html(message.label));
-	$("#message > .content").html(message.content);
+	$("#message > .label").html($("<span>").addClass(message["type"]).html(message["label"]));
+	$("#message > .content").html(message["content"]);
 
 	hideEverything();
 	$("#message").show();
