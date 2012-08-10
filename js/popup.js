@@ -2,7 +2,11 @@ function handleFormSubmit(query) {
 	if (query.length > 0) {
 		search(query);
 	} else {
-		// message user with usage info
+		message = new Object();
+		message.type = "information";
+		message.label = "Information";
+		message.content = "Use the search box to search for words or phrases.";
+		displayMessage(message);
 	}
 }
 
@@ -21,7 +25,11 @@ function search(query) {
 			parseResponse(data);
 		},
 		error: function() {
-			// message user with error
+			message = new Object();
+			message.type = "error";
+			message.label = "Error";
+			message.content = "There was an error.";
+			displayMessage(message);
 		}
 	});
 }
@@ -32,7 +40,11 @@ function parseResponse(response) {
 
     var indexes = tempDiv.getElementsByClassName('index');
 	if (indexes.length == 0) {
-		// no results
+		message = new Object();
+		message.type = "warning";
+		message.label = "No results";
+		message.content = "Try searching for something else.";
+		displayMessage(message);
 		return;
 	}
 
@@ -85,38 +97,50 @@ function hideEverything() {
 	$('tr').hide();
 }
 
-function displayInformation(fields) {
+function clearMessage() {
+	$("#message > .content").empty();
+	$("#message > .label").empty();
 	$("#message").hide();
-	$("#message").next().hide();
+}
 
-	$("#expression").html(fields["expression"]);
+function displayInformation(fields) {
+	clearMessage();
+
+	$("#expression > td").html(fields["expression"]);
 	//$("#expression").attr("href", fields["expression_url"]);
+	$("#expression").show();
 
 	$("#definition > .content").html(fields["definition"]);
+	$("#definition").show();
 
 	$("#example > .content").html(fields["example"]);
 	if ($("#example > .content").html().length == 0) {
 		$("#example").hide();
-		$("#example").next().hide();
 	} else {
 		$("#example").show();
-		$("#example").next().show();
 	}
 
 	$("#tags > .content").empty();
 	var tags = fields["tags"];
 	if (tags.length == 0) {
 		$("#tags").hide();
-		$("#tags").next().hide();
 	}
 	else {
 		for (var i = 0; i < tags.length; i++) {
     		$("#tags > .content").append(tags[i]);
 		}
 		$("#tags").show();
-		$("#tags").next().show();
 	}
 
+	$("#innerBody").show("fade", {color:"#BBBBBB"});
+}
+
+function displayMessage(message) {
+	$("#message > .label").html($("<span>").addClass(message.type).html(message.label));
+	$("#message > .content").html(message.content);
+
+	hideEverything();
+	$("#message").show();
 	$("#innerBody").show("fade", {color:"#BBBBBB"});
 }
 

@@ -45,8 +45,10 @@ a {
 #expression {
     font-size: large;
     font-weight: bold;
-    padding-top: 5px;
-    padding-bottom: 5px;
+}
+
+#expression > td {
+    padding-top: 0px;
 }
 
 table {
@@ -56,8 +58,8 @@ table {
 
 td {
     vertical-align: top;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .separator {
@@ -67,11 +69,21 @@ td {
 .label {
     padding-right: 10px;
     color: #666666;
+    white-space: nowrap;
 }
 
-.label.error {
-    background-color: red;
+.label .error {
+    color: #B94A48;
 }
+
+.label .information {
+    color: #00529B;
+}
+
+.label .warning {
+    color: #C09853;
+}
+
 
 .content {
     padding-left: 10px;
