@@ -133,7 +133,7 @@ function displayInformation(fields) {
 		$("#tags").show();
 	}
 
-	$("#innerBody").show("fade", {color:"#BBBBBB"});
+	$("#innerBody").fadeIn(500);
 }
 
 function displayMessage(message) {
@@ -142,7 +142,7 @@ function displayMessage(message) {
 
 	hideEverything();
 	$("#message").show();
-	$("#innerBody").show("fade", {color:"#BBBBBB"});
+	$("#innerBody").fadeIn(500);
 }
 
 /*
