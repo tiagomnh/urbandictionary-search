@@ -68,41 +68,36 @@ function parseResponse(response) {
 	displayInformation(results[0]);
 }
 
+function insertInfoRow(type, label, content) {
+	var $row = $("<tr>").addClass(type);
+	$row.append($("<td>").addClass("label").html(label));
+	$row.append($("<td>").addClass("content").html(content));
+	$("table").append($row);
+}
+
 function displayInformation(fields) {
-	$("tr").hide();
+	$("table").empty();
 
-	$("#expression > td").html($("<a>").attr("href", fields["href"]).html(fields["expression"]));
-	$("#expression").show();
+	var $expression = $("<a>").attr("href", fields["href"]).html(fields["expression"]);
+	var $expressionCell = $("<td>").attr("colspan", 2).html($expression);
+	var $expressionRow = $("<tr>").addClass("expression").html($expressionCell);
+	$("table").append($expressionRow);
 
-	$("#definition > .content").html(fields["definition"]);
-	$("#definition").show();
+	insertInfoRow("definition", "Definition", fields["definition"]);
 
-	$("#example > .content").html(fields["example"]);
-	if ($("#example > .content").html().length > 0) {
-		$("#example").show();
+	if (fields["example"].length > 0) {
+		insertInfoRow("example", "Example", fields["example"]);
 	}
 
-	$("#tags > .content").empty();
-	var tags = fields["tags"];
-	if (tags.length > 0) {
-		for (var i = 0; i < tags.length; i++) {
-    		$("#tags > .content").append(tags[i]);
-		}
-
-		$("#tags").show();
-	}
-
-	$("#innerBody").fadeIn(250);
+	$("#result").fadeIn(250);
 }
 
 function displayMessage(message) {
-	$("tr").hide();
+	$("table").empty();
 
-	$("#message > .label").html($("<span>").addClass(message["type"]).html(message["label"]));
-	$("#message > .content").html(message["content"]);
+	insertInfoRow(message["type"], message["label"], message["content"]);
 
-	$("#message").show();
-	$("#innerBody").fadeIn(250);
+	$("#result").fadeIn(250);
 }
 
 function handleLinks(html) {

@@ -32,7 +32,7 @@ a:hover {
     color: #333333;
 }
 
-#innerBody {
+#result {
 	padding: 10px;
     display: none;
     background-color: whiteSmoke;
@@ -46,12 +46,12 @@ a:hover {
     border-top: none;
 }
 
-#expression {
+.expression {
     font-size: large;
     font-weight: bold;
 }
 
-#expression > td {
+.expression > td {
     padding-top: 0px;
 }
 
@@ -76,15 +76,15 @@ td {
     white-space: nowrap;
 }
 
-.label .error {
+.error .label {
     color: #B94A48;
 }
 
-.label .information {
+.information .label {
     color: #00529B;
 }
 
-.label .warning {
+.warning .label {
     color: #C09853;
 }
 
