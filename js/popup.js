@@ -54,8 +54,8 @@ function parseResponse(response) {
 		// TODO: implement tag scraping
 
 		var result = {
-			"href": trim($response.find("td.index a").eq(index).attr("href")),
-			"expression": trim($response.find("td.word").eq(index).html()),
+			"href": $.trim($response.find("td.index a").eq(index).attr("href")),
+			"expression": $.trim($response.find("td.word").eq(index).html()),
 			"definition": updateLinks($response.find(".definition").eq(index).html()),
 			"example": updateLinks($response.find(".example").eq(index).html()),
 			"tags": tags
@@ -74,7 +74,7 @@ function getTags(rawTags) {
 
     for (var i = 0; i < tags.length - 1; i++) {
     	console.log(tags[i]);
-        cleanTags.push(trim(tags[i].innerHTML));
+        cleanTags.push($.trim(tags[i].innerHTML));
     }
 
     return cleanTags;
@@ -131,17 +131,6 @@ function displayMessage(message) {
 	hideEverything();
 	$("#message").show();
 	$("#innerBody").fadeIn(500);
-}
-
-/*
- *	REGEXES
- */
-function trim(s) {
-	// removes leading and trailing spaces
-	s = s.replace(/^\s+|\s+$/g, "");
-	// removes repeated spaces in the middle of the string
-	s = s.replace(/\s+/gi,' ');
-	return s;
 }
 
 function removeScriptTags(s) {
