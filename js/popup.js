@@ -11,7 +11,7 @@ function handleFormSubmit(query) {
 }
 
 function search(query) {
-	$("#searchInput").val(query);
+	$("#search-input").val(query);
 
 	var searchUrl = 'http://www.urbandictionary.com/define.php';
 
@@ -72,17 +72,17 @@ function insertInfoRow(type, label, content) {
 	var $row = $("<tr>").addClass(type);
 	$row.append($("<td>").addClass("label").html(label));
 	$row.append($("<td>").addClass("content").html(content));
-	$("#resultInfo").append($row);
+	$("#result-info").append($row);
 }
 
 function displayInformation(fields) {
-	$("#resultInfo").hide();
-	$("#resultInfo").empty();
+	$("#result-info").hide();
+	$("#result-info").empty();
 
 	var $expression = $("<a>").attr("href", fields["href"]).html(fields["expression"]);
 	var $expressionCell = $("<td>").attr("colspan", 2).html($expression);
 	var $expressionRow = $("<tr>").addClass("expression").html($expressionCell);
-	$("#resultInfo").append($expressionRow);
+	$("#result-info").append($expressionRow);
 
 	insertInfoRow("definition", "Definition", fields["definition"]);
 
@@ -90,17 +90,17 @@ function displayInformation(fields) {
 		insertInfoRow("example", "Example", fields["example"]);
 	}
 
-	$("#resultInfo").fadeIn(250);
+	$("#result-info").fadeIn(250);
 	$("#result").show();
 }
 
 function displayMessage(message) {
-	$("#resultInfo").hide();
-	$("#resultInfo").empty();
+	$("#result-info").hide();
+	$("#result-info").empty();
 
 	insertInfoRow(message["type"], message["label"], message["content"]);
 
-	$("#resultInfo").fadeIn(250);
+	$("#result-info").fadeIn(250);
 	$("#result").show();
 }
 
@@ -113,7 +113,7 @@ function handleLinks(html) {
 }
 
 $(window).load(function() {
-	$("#searchInput").focus();
+	$("#search-input").focus();
 
 	chrome.extension.onRequest.addListener(function(selection) {
 		search(selection);
@@ -121,11 +121,11 @@ $(window).load(function() {
 
 	chrome.tabs.executeScript(null, { file: "/js/request.js" });
 
-	$("#searchInput").keypress(function(e) {
+	$("#search-input").keypress(function(e) {
 		// if pressed key == 'Enter'
 		var key = e.keyCode || e.which;
         if (key == 13) {
-			handleFormSubmit($("#searchInput").val());
+			handleFormSubmit($("#search-input").val());
         }
     });
 });
