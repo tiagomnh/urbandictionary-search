@@ -35,11 +35,10 @@ function search(query) {
 }
 
 function parseResponse(response) {
-	var tempDiv = document.createElement('div');
-    tempDiv.innerHTML = removeScriptTags(response);
+	var $response = $(response)
 
-    var indexes = tempDiv.getElementsByClassName('index');
-	if (indexes.length == 0) {
+	var numberOfResults = $response.find(".index").length;
+	if (numberOfResults == 0) {
 		displayMessage({
 			type: "warning",
 			label: "No results",
@@ -48,36 +47,25 @@ function parseResponse(response) {
 		return;
 	}
 
-	var urls = [];
-	for (var i = 0; i < indexes.length; i++) {
-		// second match is the expression's url on urbandictionary.com
-		urls.push(indexes[i].innerHTML.match(/href=\"(.*?)\"/)[1]);
+	var results = [];
+	for (var index = 0; index < numberOfResults; index++) {
+
+		var tags = [];
+		// TODO: implement tag scraping
+
+		var result = {
+			"href": trim($response.find("td.index a").eq(index).attr("href")),
+			"expression": trim($response.find("td.word").eq(index).html()),
+			"definition": updateLinks($response.find(".definition").eq(index).html()),
+			"example": updateLinks($response.find(".example").eq(index).html()),
+			"tags": tags
+		}
+
+		results.push(result);
 	}
 
-    var words = tempDiv.getElementsByClassName('word');
-    var definitions = tempDiv.getElementsByClassName('definition');
-    var examples = tempDiv.getElementsByClassName('example');
-    var tags = tempDiv.getElementsByClassName('greenery');
-
-	var cleanTags = getTags(tags[0]);
-	var elementTags = [];
-    for (var i = 0; i < cleanTags.length; i++) {
-        var tag = document.createElement('a');
-        tag.className = 'tag';
-        tag.href = "javascript:search(\"" + cleanTags[i] + "\");";
-		tag.innerHTML = cleanTags[i];
-		elementTags.push(tag);
-    }
-
-	var cleanFields = {
-		expression: words[0].innerHTML,
-		url: urls[0],
-		definition: updateLinks(definitions[0].innerHTML),
-		example: updateLinks(examples[0].innerHTML),
-		tags: elementTags
-	};
-
-	displayInformation(cleanFields);
+	// currently only the first one is displayed
+	displayInformation(results[0]);
 }
 
 function getTags(rawTags) {
