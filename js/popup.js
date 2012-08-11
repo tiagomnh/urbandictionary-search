@@ -121,10 +121,6 @@ function displayMessage(message) {
 	$("#innerBody").fadeIn(500);
 }
 
-function removeScriptTags(s) {
-	return s.replace("/<script(.|\s)*?\/script>/g", '');
-}
-
 // replaces links to other definitions with calls to function search()
 function updateLinks(html) {
 	return html.replace(/<a.+href=".*?".*>(.*?)<\/a>/gi, "<a class=\"tag\" href=\"javascript:search(\'$1\');\">$1</a>");
