@@ -35,7 +35,7 @@ function search(query) {
 }
 
 function parseResponse(response) {
-	var $response = $(response)
+	var $response = $(response);
 
 	var numberOfResults = $response.find(".index").length;
 	if (numberOfResults == 0) {
