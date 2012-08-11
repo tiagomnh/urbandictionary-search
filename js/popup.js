@@ -110,9 +110,6 @@ function updateLinks(html) {
 	return html.replace(/<a.+href=".*?".*>(.*?)<\/a>/gi, "<a class=\"tag\" href=\"javascript:search(\'$1\');\">$1</a>");
 }
 
-/*
- *	STARTUP
- */
 $(window).load(function() {
 	$("#searchInput").focus();
 
@@ -122,7 +119,7 @@ $(window).load(function() {
 
 	chrome.tabs.executeScript(null, { file: "/js/request.js" });
 
-	$('#searchInput').keypress(function(e) {
+	$("#searchInput").keypress(function(e) {
 		// if pressed key == 'Enter'
 		var key = e.keyCode || e.which;
         if (key == 13) {
@@ -130,4 +127,3 @@ $(window).load(function() {
         }
     });
 });
-
