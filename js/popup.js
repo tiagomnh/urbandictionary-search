@@ -2,7 +2,7 @@ function handleFormSubmit(query) {
 	if (query.length > 0) {
 		search(query);
 	} else {
-		displayMessage({
+		display("message", {
 			type: "information",
 			label: "Information",
 			content: "Use the search box to search for words or phrases.",
@@ -26,7 +26,7 @@ function search(query) {
 			parseResponse(data);
 		},
 		error: function() {
-			displayMessage({
+			display("message", {
 				type: "error",
 				label: "Error",
 				content: "There was an error.",
@@ -40,7 +40,7 @@ function parseResponse(response) {
 
 	var numberOfResults = $response.find(".index").length;
 	if (numberOfResults == 0) {
-		displayMessage({
+		display("message", {
 			type: "warning",
 			label: "No results",
 			content: "Try searching for something else.",
@@ -66,7 +66,7 @@ function parseResponse(response) {
 	}
 
 	// currently only the first one is displayed
-	displayInformation(results[0]);
+	display("result", results[0]);
 }
 
 function insertInfoRow(type, label, content) {
@@ -76,11 +76,23 @@ function insertInfoRow(type, label, content) {
 	$("#result-info").append($row);
 }
 
-function displayInformation(fields) {
+function display(type, content) {
 	$("#search-icon").removeClass("loading");
 	$("#result-info").hide();
 	$("#result-info").empty();
 
+	if (type == "result") {
+		displayResult(content);
+	}
+	else if (type == "message") {
+		displayMessage(content);
+	}
+
+	$("#result-info").fadeIn(250);
+	$("#result").show();
+}
+
+function displayResult(fields) {
 	var $expression = $("<a>").attr("href", fields["href"]).html(fields["expression"]);
 	var $expressionCell = $("<td>").attr("colspan", 2).html($expression);
 	var $expressionRow = $("<tr>").addClass("expression").html($expressionCell);
@@ -91,20 +103,10 @@ function displayInformation(fields) {
 	if (fields["example"].length > 0) {
 		insertInfoRow("example", "Example", fields["example"]);
 	}
-
-	$("#result-info").fadeIn(250);
-	$("#result").show();
 }
 
 function displayMessage(message) {
-	$("#search-icon").removeClass("loading");
-	$("#result-info").hide();
-	$("#result-info").empty();
-
 	insertInfoRow(message["type"], message["label"], message["content"]);
-
-	$("#result-info").fadeIn(250);
-	$("#result").show();
 }
 
 function handleLinks(html) {
