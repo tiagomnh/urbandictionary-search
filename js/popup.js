@@ -56,8 +56,8 @@ function parseResponse(response) {
 		var result = {
 			"href": $.trim($response.find("td.index a").eq(index).attr("href")),
 			"expression": $.trim($response.find("td.word").eq(index).html()),
-			"definition": updateLinks($response.find(".definition").eq(index).html()),
-			"example": updateLinks($response.find(".example").eq(index).html()),
+			"definition": handleLinks($response.find(".definition").eq(index).html()),
+			"example": handleLinks($response.find(".example").eq(index).html()),
 			"tags": tags
 		}
 
@@ -105,9 +105,12 @@ function displayMessage(message) {
 	$("#innerBody").fadeIn(250);
 }
 
-// replaces links to other definitions with calls to function search()
-function updateLinks(html) {
-	return html.replace(/<a.+href=".*?".*>(.*?)<\/a>/gi, "<a class=\"tag\" href=\"javascript:search(\'$1\');\">$1</a>");
+function handleLinks(html) {
+	// right now the anchors are being removed
+	// later on I want to convert them to search links
+	var tempDiv = $("<div>").html(html);
+	tempDiv.find("a").contents().unwrap();
+	return tempDiv.html();
 }
 
 $(window).load(function() {
