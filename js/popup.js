@@ -68,18 +68,6 @@ function parseResponse(response) {
 	displayInformation(results[0]);
 }
 
-function getTags(rawTags) {
-    var tags = rawTags.getElementsByClassName("urbantip");
-    var cleanTags = [];
-
-    for (var i = 0; i < tags.length - 1; i++) {
-    	console.log(tags[i]);
-        cleanTags.push($.trim(tags[i].innerHTML));
-    }
-
-    return cleanTags;
-}
-
 function hideEverything() {
 	$('#innerBody').hide();
 	$('#expression').hide();
