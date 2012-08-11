@@ -68,20 +68,8 @@ function parseResponse(response) {
 	displayInformation(results[0]);
 }
 
-function hideEverything() {
-	$('#innerBody').hide();
-	$('#expression').hide();
-	$('tr').hide();
-}
-
-function clearMessage() {
-	$("#message > .content").empty();
-	$("#message > .label").empty();
-	$("#message").hide();
-}
-
 function displayInformation(fields) {
-	clearMessage();
+	$("tr").hide();
 
 	$("#expression > td").html(fields["expression"]);
 	//$("#expression").attr("href", fields["expression_url"]);
@@ -91,34 +79,31 @@ function displayInformation(fields) {
 	$("#definition").show();
 
 	$("#example > .content").html(fields["example"]);
-	if ($("#example > .content").html().length == 0) {
-		$("#example").hide();
-	} else {
+	if ($("#example > .content").html().length > 0) {
 		$("#example").show();
 	}
 
 	$("#tags > .content").empty();
 	var tags = fields["tags"];
-	if (tags.length == 0) {
-		$("#tags").hide();
-	}
-	else {
+	if (tags.length > 0) {
 		for (var i = 0; i < tags.length; i++) {
     		$("#tags > .content").append(tags[i]);
 		}
+
 		$("#tags").show();
 	}
 
-	$("#innerBody").fadeIn(500);
+	$("#innerBody").fadeIn(250);
 }
 
 function displayMessage(message) {
+	$("tr").hide();
+
 	$("#message > .label").html($("<span>").addClass(message["type"]).html(message["label"]));
 	$("#message > .content").html(message["content"]);
 
-	hideEverything();
 	$("#message").show();
-	$("#innerBody").fadeIn(500);
+	$("#innerBody").fadeIn(250);
 }
 
 // replaces links to other definitions with calls to function search()
