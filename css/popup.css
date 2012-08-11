@@ -16,6 +16,10 @@ a {
     color: #000000;
 }
 
+a:hover {
+    color: #4183C4;
+}
+
 #container {
 	margin: 5px;
 }
@@ -83,7 +87,6 @@ td {
 .label .warning {
     color: #C09853;
 }
-
 
 .content {
     padding-left: 10px;
