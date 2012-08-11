@@ -11,6 +11,7 @@ function handleFormSubmit(query) {
 }
 
 function search(query) {
+	$("#search-icon").addClass("loading");
 	$("#search-input").val(query);
 
 	var searchUrl = 'http://www.urbandictionary.com/define.php';
@@ -76,6 +77,7 @@ function insertInfoRow(type, label, content) {
 }
 
 function displayInformation(fields) {
+	$("#search-icon").removeClass("loading");
 	$("#result-info").hide();
 	$("#result-info").empty();
 
@@ -95,6 +97,7 @@ function displayInformation(fields) {
 }
 
 function displayMessage(message) {
+	$("#search-icon").removeClass("loading");
 	$("#result-info").hide();
 	$("#result-info").empty();
 
