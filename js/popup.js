@@ -71,8 +71,7 @@ function parseResponse(response) {
 function displayInformation(fields) {
 	$("tr").hide();
 
-	$("#expression > td").html(fields["expression"]);
-	//$("#expression").attr("href", fields["expression_url"]);
+	$("#expression > td").html($("<a>").attr("href", fields["href"]).html(fields["expression"]));
 	$("#expression").show();
 
 	$("#definition > .content").html(fields["definition"]);
