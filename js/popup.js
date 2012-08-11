@@ -72,16 +72,17 @@ function insertInfoRow(type, label, content) {
 	var $row = $("<tr>").addClass(type);
 	$row.append($("<td>").addClass("label").html(label));
 	$row.append($("<td>").addClass("content").html(content));
-	$("table").append($row);
+	$("#resultInfo").append($row);
 }
 
 function displayInformation(fields) {
-	$("table").empty();
+	$("#resultInfo").hide();
+	$("#resultInfo").empty();
 
 	var $expression = $("<a>").attr("href", fields["href"]).html(fields["expression"]);
 	var $expressionCell = $("<td>").attr("colspan", 2).html($expression);
 	var $expressionRow = $("<tr>").addClass("expression").html($expressionCell);
-	$("table").append($expressionRow);
+	$("#resultInfo").append($expressionRow);
 
 	insertInfoRow("definition", "Definition", fields["definition"]);
 
@@ -89,15 +90,18 @@ function displayInformation(fields) {
 		insertInfoRow("example", "Example", fields["example"]);
 	}
 
-	$("#result").fadeIn(250);
+	$("#resultInfo").fadeIn(250);
+	$("#result").show();
 }
 
 function displayMessage(message) {
-	$("table").empty();
+	$("#resultInfo").hide();
+	$("#resultInfo").empty();
 
 	insertInfoRow(message["type"], message["label"], message["content"]);
 
-	$("#result").fadeIn(250);
+	$("#resultInfo").fadeIn(250);
+	$("#result").show();
 }
 
 function handleLinks(html) {

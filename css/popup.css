@@ -46,24 +46,24 @@ a:hover {
     border-top: none;
 }
 
+#resultInfo {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#resultInfo td {
+    vertical-align: top;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
 .expression {
     font-size: large;
     font-weight: bold;
 }
 
-.expression > td {
-    padding-top: 0px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-td {
-    vertical-align: top;
-    padding-top: 10px;
-    padding-bottom: 10px;
+.expression td {
+    padding-top: 0px !important;
 }
 
 .separator {
