@@ -1,10 +1,9 @@
 # Urban Dictionary Search
 
-## Description
+Simple Google Chrome extension that grabs definitions from [Urban Dictionary](http://www.urbandictionary.com/). It is currently in the [Chrome Web Store](https://chrome.google.com/webstore/detail/gfjijibnpohkjdmbahejpeoilmgjahei).
 
-Simple Google Chrome extension that allows the quick search of definitions on [Urban Dictionary](http://www.urbandictionary.com/).
+Since Urban Dictionary (currently) doesn't have an official API, the definitions are web scraped. For that reason the extension might break at any time (I doubt it will be soon, though, since UD is rarely updated). I probably won't update this extension anymore, so if it breaks feel free to fork away and fix it yourself.
 
-Search can be done in two ways:
+#License
 
-* Selecting the target expression and click the extension's icon, or
-* Writing the expression on the extension's form.
+[WTFPL](http://sam.zoy.org/wtfpl/). 
