@@ -79,6 +79,12 @@ a:hover {
     font-weight: bold;
 }
 
+.expression a {
+    border-bottom: #666666;
+    border-width: 0px 0px 1px 0px;
+    border-style: none none dotted none;
+}
+
 .expression td {
     padding-top: 0px !important;
 }
