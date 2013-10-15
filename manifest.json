@@ -1,10 +1,25 @@
 {
     "manifest_version": 2,
     "name": "Urban Dictionary Search",
-    "version": "1.3.1",
+    "version": "1.4",
     "description": "Searches expressions on UrbanDictionary.com.",
     "icons": {
         "128": "images/icons/icon128.png"
+    },
+    "omnibox": {
+        "keyword" : "urban"
+    },
+    "commands": {
+        "_execute_browser_action": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+U",
+                "mac": "MacCtrl+Shift+U"
+            }
+        }
+    },
+    "background": {
+        "scripts": ["js/background.js"],
+        "persistent": false
     },
     "browser_action": {
         "default_icon": "images/icons/icon128.png",
