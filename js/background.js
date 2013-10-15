@@ -1,5 +1,5 @@
 function setDefaultSuggestion(text) {
-    chrome.omnibox.setDefaultSuggestion({description: 'Search ' + text + ' on Urban Dictionary'});
+    chrome.omnibox.setDefaultSuggestion({description: 'Search ' + (text || 'something') + ' on Urban Dictionary'});
 }
 
 // This event is fired each time the user updates the text in the omnibox,
