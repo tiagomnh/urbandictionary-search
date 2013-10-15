@@ -5,7 +5,7 @@ function handleFormSubmit(query) {
 		display("message", {
 			type: "information",
 			label: "Information",
-			content: "Use the search box to search for words or phrases.",
+			content: "Use the search box to search for words or phrases."
 		});
 	}
 }
@@ -29,7 +29,7 @@ function search(query) {
 			display("message", {
 				type: "error",
 				label: "Error",
-				content: "There was an error.",
+				content: "There was an error."
 			});
 		}
 	});
@@ -43,7 +43,7 @@ function parseResponse(response) {
 		display("message", {
 			type: "warning",
 			label: "No results",
-			content: "Try searching for something else.",
+			content: "Try searching for something else."
 		});
 		return;
 	}
@@ -60,7 +60,7 @@ function parseResponse(response) {
 			"definition": handleLinks($response.find(".definition").eq(index).html()),
 			"example": handleLinks($response.find(".example").eq(index).html()),
 			"tags": tags
-		}
+		};
 
 		results.push(result);
 	}
@@ -120,7 +120,7 @@ function handleLinks(html) {
 $(window).load(function() {
 	$("#search-input").focus();
 
-	chrome.extension.onRequest.addListener(function(selection) {
+	chrome.extension.onMessage.addListener(function(selection) {
 		search(selection);
 	});
 
